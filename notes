@@ -1,0 +1,16 @@
+RAILSBANK API Notes
+
+Create User = POST https://play.railsbank.com/v1/customer/endusers
+Create Ledger so that we can do things with money. = POST https://play.railsbank.com/v1/customer/ledgers
+Create an IBAN:
+  1. Assign an IBAN - POST using the LedgerID = https://play.railsbank.com/v1/customer/ledgers/${ledger1}/assign-iban
+  2. Get the IBAN - GET "https://play.railsbank.com/v1/customer/ledgers/${ledger1}"
+Credit the Ledger with POST https://play.railsbank.com/dev/customer/transactions/receive
+  bic should be bic_swift.
+
+
+Create Beneficiary POST https://play.railsbank.com/v1/customer/beneficiaries
+
+Send money to a beneficiary POST https://play.railsbank.com/v1/customer/transactions
+
+View the transaction here GET https://play.railsbank.com/v1/customer/transactions/${transactionId}

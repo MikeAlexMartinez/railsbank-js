@@ -1,0 +1,7 @@
+GET all endusers that I've registered.
+
+curl --request GET \
+   --header 'Accept: application/json' \
+   --header "Authorization: ${APIKEY}" \
+   'https://play.railsbank.com/v1/customer/endusers'
+
