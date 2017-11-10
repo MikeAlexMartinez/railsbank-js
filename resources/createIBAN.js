@@ -1,41 +1,40 @@
 const rp = require('request-promise');
 
 /**
- * returns a promise to create a ledger for a particular user
- * @param {Object} person
+ * returns a promise to create an IBAN for a particular ledger
+ * @param {String} ledgerId
  * @param {String} API_KEY
  * @return {Promise}
  */
 
-module.exports = function createUser(person, API_KEY) {
-  return new Promise(createUserPromise);
+module.exports = function createIBAN(ledgerId, API_KEY) {
+  return new Promise(createIBANPromise);
 
-  function createUserPromise(res, rej) {
-    
+  function createIBANPromise(res, rej) {
+     
     const options = {
       method: 'POST',
-      uri: 'https://play.railsbank.com/v1/customer/endusers',
+      uri: `https://play.railsbank.com/v1/customer/ledgers/${ledger}/assign-iban`,
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': API_KEY,
       },
-      body: person,
       json: true,
     };
 
     rp(options)
       .then(success)
-      .catch(error)
+      .catch(error);
 
-    function success(enduser) {
-      console.log("Created USER ----");
+    function success(ledger) {
+      console.log("Created IBAN ----");
       console.log("=======================");
-      res(enduser);
+      res(ledger);
     }
 
     function error(err) {
-      console.log("!! Error Creating User !!");
+      console.log("!! Error Creating IBAN !!");
       console.log("=======================");
       rej(err);
     }

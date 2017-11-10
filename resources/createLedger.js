@@ -1,5 +1,12 @@
 const rp = require('request-promise');
 
+/**
+ * returns a promise to create a ledger for a particular user
+ * @param {Object} ledger
+ * @param {String} API_KEY
+ * @return {object} ledger_id
+ */
+
 module.exports = function createLedger(ledger, API_KEY) {
   return new Promise(createLedgerPromise);
 
@@ -22,14 +29,13 @@ module.exports = function createLedger(ledger, API_KEY) {
       .catch(error);
     
     function success(body) {
-      console.log("Created User!");
+      console.log("Created Ledger ----");
       console.log("=====================");
-      console.log(body);
       res(body);
     };
     
     function error(err) {
-      console.log("!! ERROR ENCOUNTERED !!");
+      console.log("!! ERROR Creating Ledger !!");
       console.log("=======================");
       rej(err);
     };
