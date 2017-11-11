@@ -8,9 +8,10 @@ console.log(process.env.API_KEY);
 
 const user = {
   "person": {
-    "username": "newnam5", 
-    "name": "new name5",
-    "email": "new4@mail.com",
+    "password": "testpassword",
+    "username": "newnam6", 
+    "name": "new name6",
+    "email": "new6@mail.com",
     "date_of_birth": "1990-10-01",
     "telephone": "07123456789"
   },

@@ -12,11 +12,11 @@ getAllUsers(API_KEY)
   .catch(error);
 
 function filterUsers(users) {
-  console.log(users);
   return new Promise(fUP);
   
   function fUP(res, rej) {
 
+    // focus on wimpy eric
     const target_users = ["5a030128-84c9-4c14-893c-43ebc5de6eb1"];
     
     const filteredUsers = users.filter((user) => {
@@ -48,12 +48,39 @@ function retrieveUser(users) {
 function useUpdateUser(user) {
 
   console.log(user);
-  const person = {
-    name: "Wimpy Eric",
-    email: "cantona@legend.com"
+  const meta = {
+    accounts: [
+      {
+        ledger_id: "5a06c937-b7b8-4329-bc7b-2a9356f4c1c7",
+        account_name: "Cash Account",
+        preference: 1,
+        allow_drain: true,
+        allow_auth_overdraft: true,
+        allow_unauth_overdraft: false,
+        allow_topup: true,
+      },
+      {
+        ledger_id: "5a06c937-b7b8-4329-bc7b-2a9356f4c1c7",
+        account_name: "Savings Account",
+        preference: 2,
+        allow_drain: true,
+        allow_auth_overdraft: true,
+        allow_unauth_overdraft: false,
+        allow_topup: true,
+      },
+      {
+        ledger_id: "5a06c937-b7b8-4329-bc7b-2a9356f4c1c7",
+        account_name: "Monthly Bills",
+        preference: 3,
+        allow_drain: false,
+        allow_auth_overdraft: false,
+        allow_unauth_overdraft: false,
+        allow_topup: false,
+      }
+    ]
   };
 
-  updateUser(user.enduser_id, person, API_KEY)
+  updateUser(user.enduser_id, meta, API_KEY)
     .then(success)
     .catch(error);
 }

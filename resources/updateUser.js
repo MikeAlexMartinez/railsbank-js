@@ -7,7 +7,7 @@ const rp = require('request-promise');
  * @return {Promise}
  */
 
-module.exports = function updateUser(enduserId, person, API_KEY) {
+module.exports = function updateUser(enduserId, meta, API_KEY) {
   return new Promise(updateUserPromise);
 
   function updateUserPromise(res, rej) {
@@ -21,7 +21,7 @@ module.exports = function updateUser(enduserId, person, API_KEY) {
         'Authorization': API_KEY,
       },
       body: {
-        person: person,
+        enduser_meta: meta,
       },
       json: true,
     };

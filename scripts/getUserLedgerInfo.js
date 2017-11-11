@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const getUser = require('../resources/getUser');
 const getLedger = require('../resources/getLedger');
-const creditLedger = require('../resources/creditLedger');
 
 const API_KEY = process.env.API_KEY;
 
@@ -11,11 +10,11 @@ const enduserId = "5a030128-84c9-4c14-893c-43ebc5de6eb1";
 
 getUser(enduserId, API_KEY)
   .then(getLedgerInfo)
-  .then(creditLedgers)
   .catch(error);
 
 function getLedgerInfo(user) {
   console.log(user);
+  console.log('\n ==================== \n');
   return new Promise ((res, rej) => {
 
     const ledgers = user.ledgers;
@@ -38,40 +37,14 @@ function getLedgerInfo(user) {
           ledgersDetailed.push(ledgerDetail);
 
           if (ledgersDetailed.length === count) {
-            res(ledgersDetailed);
+            console.log(ledgersDetailed);
           }
         })
         .catch(error);
     });
-
-    
   });
-}
-
-function creditLedgers(ledgers) {
-
-  
-  ledgers.forEach((l) => { 
-    
-    const transaction = {
-      amount: 1000,
-      bic_swift: l.detail.bic_swift,
-      iban: l.detail.iban,
-    }
-
-    console.log(transaction);
-
-    creditLedger(transaction, API_KEY)
-      .then(success)
-      .catch(error);
-  });
-}
-
-function success(body) {
-  console.log(body);
 }
 
 function error(err) {
-  console.log(err.error);
+  console.error(err);
 }
-
