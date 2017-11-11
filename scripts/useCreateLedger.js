@@ -14,7 +14,7 @@ function filterUsers(users) {
   function fUP(res, rej) {
 
     // Focus on Wimpy Eric
-    const target_users = ["5a030128-84c9-4c14-893c-43ebc5de6eb1"];
+    const target_users = ["5a071c11-799a-499a-b209-5ac6e7a255b3"];
     
     const filteredUsers = users.filter((user) => {
       return target_users.indexOf(user.enduser_id) !== -1;  

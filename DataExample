@@ -1,0 +1,135 @@
+User Data:
+
+{ enduser_id: '5a030128-84c9-4c14-893c-43ebc5de6eb1',
+  enduser_status: 'enduser-status-ok',
+  ledgers: 
+   [ { ledger_id: '5a03f5b4-7d4c-4772-8193-0d8f9949a8b7' },
+     { ledger_id: '5a06c8c6-362c-4769-b2a7-a94ce54ecfb6' },
+     { ledger_id: '5a06c937-b7b8-4329-bc7b-2a9356f4c1c7' } ],
+  beneficiaries: [],
+  person: 
+   { country_of_residence: [ 'GB' ],
+     address_history: [ [Object] ],
+     date_onboarded: '2015-11-21',
+     email: 'cantona@legend.com',
+     name: 'Wimpy Eric',
+     address: 
+      { address_refinement: 'Apartment 42',
+        address_number: '29',
+        address_street: 'Acacia Road',
+        address_city: 'Nuttytown',
+        address_postal_code: 'FX20 7XS',
+        address_iso_country: 'GB' },
+     telephone: '+44 22 626 2626',
+     date_of_birth: '1970-11-05',
+     nationality: [ 'Czech' ] },
+  enduser_meta: { accounts: [ [Object], [Object], [Object] ] } }
+
+ ========================== 
+
+This is stored in the enduser_meta data. These are custom fields I've added to allow
+us to distinguish the order in which we would transfer money between accounts.
+
+Account Meta Data
+{ ledger_id: '5a06c937-b7b8-4329-bc7b-2a9356f4c1c7',
+  account_name: 'Cash Account',
+  preference: 1,
+  allow_drain: true,
+  allow_auth_overdraft: true,
+  allow_unauth_overdraft: false,
+  allow_topup: true }
+{ ledger_id: '5a06c937-b7b8-4329-bc7b-2a9356f4c1c7',
+  account_name: 'Savings Account',
+  preference: 2,
+  allow_drain: true,
+  allow_auth_overdraft: true,
+  allow_unauth_overdraft: false,
+  allow_topup: true }
+{ ledger_id: '5a06c937-b7b8-4329-bc7b-2a9356f4c1c7',
+  account_name: 'Monthly Bills',
+  preference: 3,
+  allow_drain: false,
+  allow_auth_overdraft: false,
+  allow_unauth_overdraft: false,
+  allow_topup: false }
+
+================================
+
+This is the actual bank account info for the user described above.
+
+[
+  { iban: 'SK6400000761510406833363',
+    ledger_primary_use_types: [Object],
+    ledger_id: '5a06c937-b7b8-4329-bc7b-2a9356f4c1c7',
+    ledger_holder: [Object],
+    ledger_who_owns_assets: 'ledger-assets-owned-by-me',
+    partner_ref: 'examplebank',
+    partner_id: '58fe2ce0-3def-4e08-b778-c121c7f98334',
+    ledger_t_and_cs_country_of_jurisdiction: 'GB',
+    bic_swift: 'SPSRSKBA',
+    ledger_status: 'ledger-status-ok',
+    amount: 1000,
+    partner_product: 'ExampleBank-EUR-1',
+    partner: [Object],
+    ledger_iban_status: 'ledger-iban-status-ok',
+    asset_type: 'eur',
+    asset_class: 'currency',
+    ledger_type: 'ledger-type-single-user' 
+  },
+  { 
+    iban: 'SK4700000851510406961671',
+    ledger_primary_use_types: [Object],
+    ledger_id: '5a06c8c6-362c-4769-b2a7-a94ce54ecfb6',
+    ledger_holder: [Object],
+    ledger_who_owns_assets: 'ledger-assets-owned-by-me',
+    partner_ref: 'examplebank',
+    partner_id: '58fe2ce0-3def-4e08-b778-c121c7f98334',
+    ledger_t_and_cs_country_of_jurisdiction: 'GB',
+    bic_swift: 'SPSRSKBA',
+    ledger_status: 'ledger-status-ok',
+    amount: 1000,
+    partner_product: 'ExampleBank-EUR-1',
+    partner: [Object],
+    ledger_iban_status: 'ledger-iban-status-ok',
+    asset_type: 'eur',
+    asset_class: 'currency',
+    ledger_type: 'ledger-type-single-user' 
+  },
+  { 
+    iban: 'SK6600000461510209016148',
+    ledger_primary_use_types: [Object],
+    ledger_id: '5a03f5b4-7d4c-4772-8193-0d8f9949a8b7',
+    ledger_holder: [Object],
+    ledger_who_owns_assets: 'ledger-assets-owned-by-me',
+    partner_ref: 'examplebank',
+    partner_id: '58fe2ce0-3def-4e08-b778-c121c7f98334',
+    ledger_t_and_cs_country_of_jurisdiction: 'GB',
+    bic_swift: 'SPSRSKBA',
+    ledger_status: 'ledger-status-ok',
+    amount: 1000,
+    partner_product: 'ExampleBank-EUR-1',
+    partner: [Object],
+    ledger_iban_status: 'ledger-iban-status-ok',
+    asset_type: 'eur',
+    asset_class: 'currency',
+    ledger_type: 'ledger-type-single-user' 
+  }
+]
+
+
+==========================================
+
+This is what an interledger transaction looks like:
+
+{
+  "ledger_from_id": "59106091-e2b9-41ac-9e46-db5a626e7627", \
+  "ledger_to_id": "591060f9-59b4-454e-82d5-60fc6980b01f", \
+  "amount": "47.25",
+  "transaction_meta": {
+    "foo": "bar"
+  }
+}
+
+sent as a post request to this API
+
+https://api.railsbank.com/v1/customer/transactions/inter-ledger
