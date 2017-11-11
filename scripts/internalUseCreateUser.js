@@ -19,10 +19,8 @@ const user = {
   }
 }
 
-internalGetCSRF()
-  .then(getToken)/*
-  .then(internalCreateUser)
-  .then(success)*/
+internalCreateUser(user)
+  .then(success)
   .catch(error);
 
 
@@ -36,7 +34,7 @@ internalCreateUser(user, process.env.API_KEY)
   .catch(error);
 */
 
-function getToken(body) {
+function success(body) {
   console.log(body);
 }
 
