@@ -7,14 +7,14 @@ const rp = require('request-promise');
  * @return {Promise}
  */
 
-module.exports = function createUser(person, API_KEY) {
+module.exports = function internalCreateUser(person, API_KEY) {
   return new Promise(createUserPromise);
 
   function createUserPromise(res, rej) {
     
     const options = {
       method: 'POST',
-      uri: 'https://play.railsbank.com/v1/customer/endusers',
+      uri: 'http://c7ee16d0.ngrok.io/apis/add_user',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -31,14 +31,12 @@ module.exports = function createUser(person, API_KEY) {
     function success(enduser) {
       console.log("Created USER ----");
       console.log("=======================");
-      console.log(enduser);
       res(enduser);
     }
 
     function error(err) {
       console.log("!! Error Creating User !!");
       console.log("=======================");
-      console.log(err);
       rej(err);
     }
   }

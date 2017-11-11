@@ -1,0 +1,20 @@
+Create a user-
+
+enduser_body=$(< <(cat <<EOF
+{
+  "person": {
+    "name": "Michael Martinez",
+    "email": "mike@email.com",
+    "date_of_birth": "1990-10-01",
+    "telephone": "07123456789"
+  },
+  "enduser_meta": {
+    "primary_account": [],
+    "account_ordering": []
+  }
+}
+EOF
+))
+
+APIKEY="API-Key zCfdxCd10KIIdOWt5bpLx5GqO8I9LueG#xL0lQurJSHC7W4hbL0JUj3wsLYFhioaC7tV0YWxEt5NyRhIrpTB4JsCgEFL6qQZH"
+

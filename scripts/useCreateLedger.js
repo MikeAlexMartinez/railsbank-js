@@ -1,22 +1,52 @@
 require('dotenv').config();
 
-const createLedger = require('./resources/createLedger');
-const enduserId = require('./users/storage').me.enduser_id;
+const createLedger = require('../resources/createLedger');
+const getAllUsers = require('../resources/getAllUsers');
 
-const ledger = {
-  "holder_id": enduserId,
-  "partner_product": "ExampleBank-GBP-1",
-  "asset_class": "currency",
-  "asset_type": "gbp",
-  "ledger_type": "ledger-type-single-user",
-  "ledger_who_owns_assets": "ledger-assets-owned-by-me",
-  "ledger_primary_use_types": ["ledger-primary-use-types-payments"],
-  "ledger_t_and_cs_country_of_jurisdiction": "GB"
-} 
-
-createLedger(ledger, process.env.API_KEY)
-  .then(success)
+getAllUsers(process.env.API_KEY)
+  .then(filterUsers)
+  .then(createLedgers)
   .catch(error);
+
+function filterUsers(users) {
+  return new Promise(fUP);
+  
+  function fUP(res, rej) {
+
+    // Focus on Wimpy Eric
+    const target_users = ["5a030128-84c9-4c14-893c-43ebc5de6eb1"];
+    
+    const filteredUsers = users.filter((user) => {
+      return target_users.indexOf(user.enduser_id) !== -1;  
+    });
+    
+    res(filteredUsers);
+  }
+
+}
+
+function createLedgers(users) {
+  const user = users[0];
+  console.log(user);
+  const ledger = new Ledger(user.enduser_id);
+  console.log(ledger);
+
+  createLedger(ledger, process.env.API_KEY)
+    .then(success)
+    .catch(error);
+
+}
+
+function Ledger(enduser_id) {
+  this.holder_id = enduser_id;
+  this.partner_product = "ExampleBank-EUR-1";
+  this.asset_class = "currency";
+  this.asset_type = "eur";
+  this.ledger_type = "ledger-type-single-user";
+  this.ledger_who_owns_assets = "ledger-assets-owned-by-me";
+  this.ledger_primary_use_types = ["ledger-primary-use-types-payments"];
+  this.ledger_t_and_cs_country_of_jurisdiction = "GB";
+}
 
 function success(body) {
   console.log(body);

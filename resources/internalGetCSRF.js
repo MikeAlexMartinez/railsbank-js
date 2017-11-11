@@ -7,38 +7,34 @@ const rp = require('request-promise');
  * @return {Promise}
  */
 
-module.exports = function createUser(person, API_KEY) {
-  return new Promise(createUserPromise);
+module.exports = function internalGetCSRF(person, API_KEY) {
+  return new Promise(iGCP);
 
-  function createUserPromise(res, rej) {
+  function iGCP(res, rej) {
     
     const options = {
-      method: 'POST',
-      uri: 'https://play.railsbank.com/v1/customer/endusers',
+      method: 'GET',
+      uri: 'http://c7ee16d0.ngrok.io/apis/csrf_token',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': API_KEY,
       },
-      body: person,
-      json: true,
     };
 
     rp(options)
       .then(success)
       .catch(error)
 
-    function success(enduser) {
-      console.log("Created USER ----");
+    function success(response) {
+      console.log("Retrieved CSRF Token ----");
       console.log("=======================");
-      console.log(enduser);
-      res(enduser);
+      console.log(response)
+      res(response);
     }
 
     function error(err) {
-      console.log("!! Error Creating User !!");
+      console.log("!! Error Retrieving token !!");
       console.log("=======================");
-      console.log(err);
       rej(err);
     }
   }
