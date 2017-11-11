@@ -8,8 +8,9 @@ console.log(process.env.API_KEY);
 
 const user = {
   "person": {
-    "name": "Ashish Sareen",
-    "email": "Ash@mail.com",
+    "username": "newnam5", 
+    "name": "new name5",
+    "email": "new4@mail.com",
     "date_of_birth": "1990-10-01",
     "telephone": "07123456789"
   },
@@ -22,7 +23,6 @@ const user = {
 internalCreateUser(user)
   .then(success)
   .catch(error);
-
 
 function getToken(response) {
   console.log(response);

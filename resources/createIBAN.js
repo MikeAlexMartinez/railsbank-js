@@ -14,7 +14,7 @@ module.exports = function createIBAN(ledgerId, API_KEY) {
      
     const options = {
       method: 'POST',
-      uri: `https://play.railsbank.com/v1/customer/ledgers/${ledger}/assign-iban`,
+      uri: `https://play.railsbank.com/v1/customer/ledgers/${ledgerId}/assign-iban`,
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

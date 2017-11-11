@@ -1,13 +1,21 @@
 const rp = require('request-promise');
 
-module.exports = function getLedger(enduserId, API_KEY) {
-  return new Promise(gL);
+/**
+ * returns a promise to retrieve ledger info for specified ledger id
+ * @param {Object} ledgerId
+ * @param {String} API_KEY
+ * @return {Promise}
+ */
 
-  function getUserPromise(res, rej) {
+
+module.exports = function getLedger(ledgerId, API_KEY) {
+  return new Promise(gLPromise);
+
+  function gLPromise(res, rej) {
     
     const options = {
       method: 'GET',
-      uri: `https://play.railsbank.com/v1/customer/endusers/${enduserId}`,
+      uri: `https://play.railsbank.com/v1/customer/ledgers/${ledgerId}`,
       headers: {
         'Accept': 'application/json',
         'Authorization': API_KEY,
